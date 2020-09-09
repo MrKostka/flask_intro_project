@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		{% block head %} {% endblock %}
+  		
+	</head>
+	<body>
+		<p>This text is from 'base.html' and before jinja blocks.</p>
+		{% block body %}	{% endblock %}
+		<p>This text is after jinja blocks.</p>
+	</body>
+</html>

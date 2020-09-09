@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block head %} 
+<title>Posts</title>
+{% endblock%}
+
+{% block body %} 
+<h1>Posts page</h1>
+<p>This html page is called 'posts.html' and is used for rendering post app route </p>
+
+	{% for post in posts %}
+		<h2>{{ post.title }}</h2> 
+		<h3>{{ post.author }}</h3>
+		<p>{{ post.content }}</p> 	
+	{% endfor %}
+{% endblock%}
