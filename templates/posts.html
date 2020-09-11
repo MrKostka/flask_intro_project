@@ -5,13 +5,21 @@
 <title>Posts</title>
 {% endblock%}
 
+<!--<hr>
+<h2>Create new blog-->
 {% block body %} 
 <h1>Posts page</h1>
 <p>This html page is called 'posts.html' and is used for rendering post app route </p>
 
 	{% for post in posts %}
 		<h2>{{ post.title }}</h2> 
-		<h3>{{ post.author }}</h3>
+		
+		{% if post.author %}
+			<h3>By:{{ post.author }}</h3>
+		{% else %}
+			<h3>By: N/A </h3>
+		{% endif %}
+
 		<p>{{ post.content }}</p> 	
 	{% endfor %}
 {% endblock%}

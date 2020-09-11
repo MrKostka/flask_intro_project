@@ -1,7 +1,20 @@
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__) #python vec, potrebna k vytvoreniu objektu/aplikacie
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db' #sqlite je na teraz relativne vyhodne, lebo uklada info aj lokalne na pc, cize netreba sluzbu navyse... (y) ................ tri backslashe ///su relativna cesta od tohto priecinka, 4 su //// absolutnou cestou od priecinka
+db = SQLAlchemy(app)
 
+class BlogPost(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    author = db.Column(db.String(30), nullable=False, default='N/A')
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    
+    def __repr__(self):
+        return 'Blog Post ' + str(self.id)
 
 all_posts = [
     {
@@ -19,7 +32,7 @@ all_posts = [
 def index():
 	return render_template('index.html')
 
-@app.route('/posts')
+@app.route('/posts', methods=['GET','POST'])
 def posts():
     return render_template('posts.html', posts=all_posts)
 
