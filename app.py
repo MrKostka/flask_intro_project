@@ -42,7 +42,7 @@ def hello_name(name,id):
 
 @app.route('/onlyget',methods=['GET'])
 def get_req():
-	return "You can only get this webpage." 
+	return "You can only get this webpage cause you're using a GET method." 
 
 if __name__ == "__main__":
 	app.run(debug=True)
